@@ -1,0 +1,100 @@
+﻿@model AviaGlobus.ViewModels.AddFlightViewModel;
+
+@{
+    ViewData["Title"] = "Добавление рейса";
+}
+<link rel="stylesheet" href="~/css/AddFlight.css" asp-append-version="true" />
+
+<form asp-action="AddFlight" asp-controller="home">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5">
+
+                    <h3 class="text-center">Добавление рейса</h3>
+                    <div class="input-group input-wrapper mb-4">
+                        <input type="text" asp-for="Departure_Point" name="departure_point" placeholder="Откуда" class="form-control" />
+                        
+                        <span class="input-group-text">→</span>
+
+                        <input type="text" asp-for="Arrival_Point" name="arrival_point" placeholder="Куда" class="form-control" />
+
+                        <input type="text" name="transfer_point" asp-for="Transfer_Point" placeholder="Пересадка" class="form-control" />
+                    </div>
+
+                    <div class="input-group  mb-4">
+                        <span asp-validation-for="Departure_Point" class="validator"></span>
+                        <span asp-validation-for="Arrival_Point" class="validator"></span>
+                        <span asp-validation-for="Transfer_Point" class="validator"></span>
+                    </div>
+
+                    <div class="input-group input-wrapper mb-4">
+                        <span class="input-group-text">Вылет:</span>
+                        <input type="date" id="depDate" asp-for="Departure_Date" name="departureDate" placeholder="Дата вылета" class="form-control" />
+                        <span asp-validation-for="Departure_Date" name="validLastname" class="validator"></span>
+
+                        <input type="time" asp-for="Departure_Time" name="departureTime" placeholder="Время вылета" class="form-control" />
+                        <span asp-validation-for="Departure_Time" name="validLastname" class="validator"></span>
+                    </div>
+
+                    <div class="input-group input-wrapper mb-4">
+                        <span class="input-group-text">Прилет:</span>
+                        <input type="date" id="arrDate" asp-for="Arrival_Date" name="arrivalDate" placeholder="Дата прилета" class="form-control" />
+                        <span asp-validation-for="Arrival_Date" class="validator"></span>
+
+                        <input type="time" asp-for="Arrival_Time" name="arrivalTime" placeholder="Время прилета" class="form-control" />
+                        <span asp-validation-for="Arrival_Time" class="validator"></span>
+                    </div>
+
+                    <div class="input-group input-wrapper mb-4">
+                        <span class="input-group-text">Цена:</span>
+                        <input type="number" name="cost" placeholder="Цена билета" asp-for="Ticket_Cost" class="form-control" />
+                        <span asp-validation-for="Ticket_Cost" class="validator"></span>
+
+                        <span class="input-group-text">Кол-во мест:</span>
+                        <input type="number" name="places" placeholder="Кол-во мест" asp-for="Places_Left" class="form-control" />
+                        <span asp-validation-for="Places_Left" class="validator"></span>
+                    </div>
+
+                    <select class="form-select input-wrapper mb-4" id="plane_type" name="plane_type">
+                        @{
+                            foreach (var planeType in Model.PlaneTypes)
+                            {
+                                <option value="@planeType.ID_Type">@planeType.Title</option>
+                            }
+                        }
+                    </select>
+                    <select class="form-select input-wrapper mb-4" id="flight_type" name="flight_type">
+                        @{
+                            foreach (var flightType in Model.FlightTypes)
+                            {
+                                <option value="@flightType.ID_Type">@flightType.Title</option>
+                            }
+                        }
+                    </select>
+                    <select class="form-select input-wrapper mb-4" id="status" name="status">
+                        @{
+                            foreach (var status in Model.Statuses)
+                            {
+                                <option value="@status.ID_Status">@status.Title</option>
+                            }
+                        }
+                    </select>
+
+                    <div class="form-group">
+                        <input type="submit" value="Добавить" class="btn btn-outline-success" id="liveToastBtn" />
+
+                        <button asp-action="Flights" asp-route-id="@Model.LoggedUser" class="btn btn-outline-info"> Отменить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<script>
+    document.getElementById('depDate').setAttribute("min", '2022-01-27');
+    document.getElementById('arrDate').setAttribute("min", '2022-01-27');
+</script>

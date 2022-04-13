@@ -1,0 +1,104 @@
+﻿@model AviaGlobus.ViewModels.UserViewModel;
+
+@{
+    ViewData["Title"] = "Сотрудники";
+}
+
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+<form method="get" asp-action="users">
+    <div class="form-inline form-group">
+
+        <label class="control-label">ID: </label>
+        <input name="id" type="number" value="@Model.FilterUserViewModel.SelectId" placeholder="ID" class=" form-control" />
+
+        <label class="control-label">Фамилия: </label>
+        <input type="text" name="lastname" value="@Model.FilterUserViewModel.SelectLastname" placeholder="Фамилия" class="form-control" />
+
+        <label class="control-label">Логин: </label>
+        <input type="text" name="login" value="@Model.FilterUserViewModel.SelectLogin" placeholder="Логин" class="form-control" />
+
+        <button type="submit" margin-left="10" class="btn" tittle="Поиск"><img src="~/css/Лупа.png" height="35" padding="0" /></button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <tr>
+        <td>
+            <a asp-action="Users" asp-route-sortOrder="@Model.SortUserViewModel.IdSort"
+               asp-route-id="@(Model.FilterUserViewModel.SelectId)"
+               asp-route-login="@(Model.FilterUserViewModel.SelectLogin)"
+               asp-route-lastname="@(Model.FilterUserViewModel.SelectLastname)">
+                ID
+            </a>
+        </td>
+        <td>
+            <a asp-action="Users" asp-route-sortOrder="@Model.SortUserViewModel.LastnameSort"
+               asp-route-id="@(Model.FilterUserViewModel.SelectId)"
+               asp-route-login="@(Model.FilterUserViewModel.SelectLogin)"
+               asp-route-lastname="@(Model.FilterUserViewModel.SelectLastname)">
+                Фамилия
+            </a>
+        </td>
+        <td>
+            <a>
+                Имя
+            </a>
+        </td>
+        <td>
+            <a>
+                Отчетво
+            </a>
+        </td>
+        <td>
+            <a asp-action="Users" asp-route-sortOrder="@Model.SortUserViewModel.LoginSort"
+               asp-route-id="@(Model.FilterUserViewModel.SelectId)"
+               asp-route-login="@(Model.FilterUserViewModel.SelectLogin)"
+               asp-route-lastname="@(Model.FilterUserViewModel.SelectLastname)">
+                Логин
+            </a>
+        </td>
+
+        <td>
+            <a>
+                Пароль
+            </a>
+        </td>
+
+        <td>
+            <a>
+                Должность
+            </a>
+        </td>
+        <td>Действия</td>
+
+    </tr>
+    @foreach (var item in Model.Users)
+    {
+        <tr>
+            <td>@item.ID_User</td>
+
+            <td>@item.Lastname</td>
+            <td>@item.Firstname</td>
+            <td>@item.Patronymic</td>
+            <td>@item.Login</td>
+            <td>@item.Password</td>
+            @foreach (var role in Model.Roles)
+            {
+                if (item.Role_ID == role.ID)
+                {
+                    <td>@role.Title</td>
+                }
+            }
+            <td>
+                <a class="btn btn-outline-warning" asp-action="EditUser" asp-controller="home" asp-route-id="@item.ID_User">Изменить</a>
+                <a class="btn btn-outline-danger" asp-action="DeleteUser" asp-controller="home" asp-route-id="@item.ID_User">Удалить</a>
+
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    <a class=" btn btn-outline-primary" asp-action="AddUser" asp-controller="home" asp-route-id="@Model.Admin.ID_User">Добавить сотрудника</a>
+    <a class=" btn btn-outline-secondary" asp-action="Flights" asp-controller="home" asp-route-id="@Model.Admin.ID_User">Рейсы</a>
+</div>

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+            <div class="container">
+                <form class="form-inline">
+                    <img src="~/css/logo.svg" fill="white"  height="35" width="35" />
+                    <a class="navbar-brand text-white" >AviaGlobus</a>
+                </form>
+
+                <form class="form-inline">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Login" asp-action="Loging">Выйти</a>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <style type="text/css">
+
+        @@font-face {
+            font-family: "Stapel Bold";
+            font-weight: bold;
+            font-style: normal;
+            src: local("Stapel Bold"), url("Fonts/StapelBold.ttf") format('truetype'), url("Fonts/StapelBold.woff") format('woff'), url("Fonts/StapelBold.woff2") format('woff2');
+        }
+
+        @@font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: normal;
+            src: local("Inter"), url("Fonts/Inter.ttf") format('truetype'), url("Fonts/Inter.woff") format('woff'), url("Fonts/Inter.woff2") format('woff2');
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #eff1f4;
+        }
+
+        header {
+            font-family: "Stapel Bold", sans-serif;
+            background: #0c73fe;
+        }
+
+
+        nav {
+            font-family: "Stapel Bold", sans-serif;
+            font-weight: bold;
+            background: #0c73fe;
+            color: white;
+        }
+    </style>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

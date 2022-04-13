@@ -1,0 +1,69 @@
+﻿@model AviaGlobus.ViewModels.TicketViewModel;
+
+@{
+    ViewData["Title"] = "Оформление билета";
+}
+
+<link rel="stylesheet" href="~/css/AddFlight.css" asp-append-version="true"/>
+
+<form asp-action="TicketSales" asp-controller="home">
+    <input type="hidden" asp-for="ID_Flyght" value="@Model.ID_Flyght"/>
+
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5">
+                    <h3>Оформление билета на рейс</h3>
+                    @{
+                        <h5>@Model.SelectFlight.Departure_Point → @Model.SelectFlight.Arrival_Point</h5>
+                    }
+                    <div class="input-wrapper mb-4">
+                        <input type="text" asp-for="Lastname" name="lastname" placeholder="Фамилия" class="form-control"/>
+                        <span asp-validation-for="Lastname" class="validator"></span>
+                    </div>
+
+                    <div class="form-group input-wrapper mb-4">
+                        <input type="text" asp-for="Firstname" name="firstname" placeholder="Имя" class="form-control"/>
+                        <span asp-validation-for="Firstname" class="validator"></span>
+                    </div>
+
+                    <div class="form-group input-wrapper mb-4">
+                        <input type="text" name="patronymic" asp-for="Patronymic" placeholder="Отчество" class="form-control"/>
+                        <span asp-validation-for="Patronymic" class="validator"></span>
+                    </div>
+
+                    @{
+                        if (Model.SelectFlight.Flight_Type_ID == 1)
+                        {
+                            <div class="form-group input-wrapper mb-4">
+                                <input type="number" maxlength="4" pattern="[0-9]{4}" asp-for="Passport_Series" name="passport_series" placeholder="Серия паспорта" class="form-control"/>
+                                <span asp-validation-for="Passport_Series" class="validator"></span>
+                            </div>
+
+                            <div class="form-group input-wrapper mb-4">
+                                <input type="number" maxlength="6" pattern="[0-9]{6}" asp-for="Passport_Number" name="passport_number" placeholder="Номер паспорта" class="form-control"/>
+                                <span asp-validation-for="Passport_Number" class="validator"></span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group input-wrapper mb-4">
+                                <input type="number" maxlength="2" pattern="[0-9]{2}" asp-for="Passport_Series" name="passport_series" placeholder="Серия паспорта" class="form-control"/>
+                                <span asp-validation-for="Passport_Series" class="validator"></span>
+                            </div>
+
+                            <div class="form-group input-wrapper mb-4">
+                                <input type="number" maxlength="7" pattern="[0-9]{7}" asp-for="Passport_Number" name="passport_number" placeholder="Номер паспорта" class="form-control"/>
+                                <span asp-validation-for="Passport_Number" class="validator"></span>
+                            </div>
+                        }
+                    }
+                    <div class="form-group">
+                        <input type="submit" value="Оформить" class="btn btn-outline-success" id="liveToastBtn"/>
+                        <button asp-action="Cashier" class="btn btn-outline-info">Готово</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

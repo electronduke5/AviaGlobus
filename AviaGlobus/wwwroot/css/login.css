@@ -1,0 +1,122 @@
+﻿@font-face {
+    font-family: "Stapel Bold";
+    font-weight: bold;
+    font-style: normal;
+    src: local("Stapel Bold"), url("Fonts/StapelBold.ttf") format('truetype'), url("Fonts/StapelBold.woff") format('woff'), url("Fonts/StapelBold.woff2") format('woff2');
+}
+
+@font-face{
+    font-family: "Inter";
+    font-style:normal;
+    font-weight:normal;
+    src: local("Inter"),
+        url("Fonts/Inter.ttf") format('truetype'),
+        url("Fonts/Inter.woff") format('woff'),
+        url("Fonts/Inter.woff2") format('woff2');
+}
+main {
+    background: #eff1f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+h3{
+    font-family: "Stapel Bold", sans-serif;
+}
+/*.container{
+    background-color:#ffffff10;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}*/
+
+.btn-primary {
+    background: #0c73fe;
+    border-color: #0c73fe;
+}
+table{
+    color:white;
+    font-family: "Inter", sans-serif;
+}
+
+.input-wrapper {
+    margin-top: 20px;
+    box-shadow: rgba(113,113,113,0.15) -5px -5px 11px, rgba(0,0,0,0.15) 5px 5px 11px;
+    border-radius: 15px;
+    width: 325px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+}
+
+
+.input-wrapper input{
+    background: transparent;
+    border: none;
+    width:100%;
+    height:100%;
+    border-radius: 15px;
+    text-indent: 20px;
+    color: #212529;
+    font-size:14px;
+    outline:0;
+    font-family: "Inter", sans-serif;
+}
+
+
+.input-icon{
+    width:40px;
+    margin-right:20px;
+    border-radius: 50px;
+    padding: 1px 2px;
+    cursor:pointer;
+    transition: all .4s ease;
+}
+
+.input-icon.selected{
+    background-color:#2d2d2d;
+}
+
+.input-icon img{
+    max-width:100%;
+}
+
+::-webkit-input-placeholder{
+    color: #B2BECD;
+    font-family: "Inter",sans-serif;
+}
+
+
+
+
+span{
+    color:red;
+    font-size:12px;
+    font-weight:bold;
+    text-align:start;
+    justify-content:flex-start;
+    font-family: 'Inter', sans-serif;
+}
+logo{    
+    font-family:'Stapel Bold', sans-serif;
+    font-size:20px;
+}
+
+.wrapper {
+    flex: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 5;
+}
+
+@media screen and (min-width: 550px) {
+
+    .wrapper {
+        border-radius: var(--border-radius);
+    }
+}
+
+
+

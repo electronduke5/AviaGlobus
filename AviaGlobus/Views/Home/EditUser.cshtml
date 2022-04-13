@@ -1,0 +1,86 @@
+﻿@model AviaGlobus.ViewModels.AddUserViewModel;
+
+@{
+    if (Model == null)
+    {
+        <div>Произошла ошибка!</div>
+        return;
+    }
+}
+
+@{
+    ViewBag.Tittle = "Изменить пользователя";
+}
+
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+<form asp-action="EditUser" asp-controller="home">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5">
+
+                        <h3 class="text-center">Изменение данных сотрудника</h3>
+                        <div class="form-group input-wrapper mb-4">
+                            <input type="text" asp-for="Lastname" name="lastname" placeholder="Фамилия" class="form-control" />
+                            <span asp-validation-for="Lastname" name="validLastname" class="validator"></span>
+                        </div>
+
+                        <div class="form-group input-wrapper mb-4">
+                            <input type="text" asp-for="Firstname" name="firstname" placeholder="Имя" class="form-control" />
+                            <span asp-validation-for="Firstname" class="validator"></span>
+                        </div>
+
+                        <div class="form-group input-wrapper mb-4">
+                            <input type="text" name="patronymic" asp-for="Patronymic" placeholder="Отчество" class="form-control" />
+                            <span asp-validation-for="Patronymic" class="validator"></span>
+                        </div>
+
+                        <div class="form-group input-wrapper mb-4">
+                            <input type="text" name="login" placeholder="Логин" asp-for="Login" class="form-control" />
+                            <span asp-validation-for="Login" class="validator"></span>
+                        </div>
+
+                        <div class="form-group input-wrapper mb-4">
+                            <input type="password" name="password" placeholder="Пароль" id="lg_password" asp-for="Password" class="form-control" />
+                            <div class="input-icon" id="icon" onclick="togglePassword()">
+                                <img src="~/css/eye.svg" />
+                            </div>
+                        </div>
+
+                        <select class="form-select input-wrapper mb-4" id="role" name="role">
+                            @{
+                                foreach (var role in Model.Roles)
+                                {
+                                    <option value="@role.ID">@role.Title</option>
+                                }
+                            }
+                        </select>
+
+                        <div class="form-group">
+                            <input type="submit" value="Изменить" class="btn btn-outline-success" id="liveToastBtn" />
+
+                            <button asp-action="Users" class="btn btn-outline-info"> Отменить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function togglePassword() {
+        var input = document.getElementById('lg_password');
+        var icon = document.getElementById('icon');
+
+        if (input.type == "password") {
+            input.type = "text";
+            icon.classList.add('selected');
+        } else {
+            input.type = "password";
+            icon.classList.remove('selected');
+        }
+    }
+</script>
